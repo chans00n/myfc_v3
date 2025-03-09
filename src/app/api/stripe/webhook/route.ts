@@ -4,15 +4,19 @@ import { createClient } from '@supabase/supabase-js'
 import { stripe } from '../../../../lib/stripe'
 
 // Initialize Supabase client with service role key for admin access
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+// We'll initialize this inside the POST handler to ensure environment variables are available
+let supabase: ReturnType<typeof createClient>
 
 export async function POST(req: Request) {
   const body = await req.text()
   const headersList = headers()
   const signature = headersList.get('stripe-signature') as string
+
+  // Initialize Supabase client here to ensure environment variables are available
+  supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
 
   let event
 
