@@ -7,6 +7,12 @@ import { createSupabaseBrowserClient } from '../../lib/supabase'
 
 export function AuthForm() {
   const supabase = createSupabaseBrowserClient()
+  const [redirectTo, setRedirectTo] = React.useState<string>('')
+
+  React.useEffect(() => {
+    // Set redirectTo only on the client side
+    setRedirectTo(`${window.location.origin}/auth/callback`)
+  }, [])
 
   return (
     <Auth
@@ -14,7 +20,7 @@ export function AuthForm() {
       appearance={{ theme: ThemeSupa }}
       theme="dark"
       providers={['google']}
-      redirectTo={`${window.location.origin}/auth/callback`}
+      redirectTo={redirectTo}
     />
   )
 } 
