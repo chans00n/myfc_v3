@@ -1,6 +1,9 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { Check } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 export default function PricingPage() {
   return (
@@ -15,16 +18,31 @@ export default function PricingPage() {
           <div className="flex flex-1 items-center justify-end space-x-4">
             <nav className="flex items-center space-x-1">
               <Link
+                href="/pricing"
+                className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/about"
+                className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
+              >
+                Contact
+              </Link>
+              <Link
                 href="/login"
                 className="px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
               >
                 Login
               </Link>
-              <Link
-                href="/signup"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              >
-                Start Free Trial
+              <Link href="/signup">
+                <Button>Start Free Trial</Button>
               </Link>
             </nav>
           </div>
@@ -42,84 +60,82 @@ export default function PricingPage() {
               </p>
             </div>
             <div className="grid gap-8 pt-12 md:grid-cols-2 md:gap-12 lg:gap-16">
-              <div className="flex flex-col gap-4 rounded-lg border bg-background p-6 shadow-sm">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold">Monthly</h3>
-                  <p className="text-muted-foreground">
-                    Perfect for those who want flexibility.
-                  </p>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Monthly</CardTitle>
+                  <CardDescription>Perfect for those who want flexibility.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex mb-4">
+                    <span className="text-4xl font-bold">$19.99</span>
+                    <span className="text-muted-foreground self-end ml-1">/month</span>
+                  </div>
+                  <ul className="grid gap-2 py-4">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Access to all workouts</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Full movement library</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Progress tracking</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Cancel anytime</span>
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild className="w-full">
+                    <Link href="/signup?plan=monthly">Start Free Trial</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+              <Card className="relative">
+                <div className="absolute -top-3 right-4">
+                  <Badge className="px-3 py-1">Popular</Badge>
                 </div>
-                <div className="flex">
-                  <span className="text-4xl font-bold">$19.99</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <ul className="grid gap-2 py-4">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Access to all workouts</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Full movement library</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Progress tracking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Cancel anytime</span>
-                  </li>
-                </ul>
-                <Link
-                  href="/signup?plan=monthly"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Start Free Trial
-                </Link>
-              </div>
-              <div className="relative flex flex-col gap-4 rounded-lg border bg-background p-6 shadow-sm">
-                <div className="absolute -top-3 right-4 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                  Popular
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-bold">Annual</h3>
-                  <p className="text-muted-foreground">
-                    Save 25% with our annual plan.
-                  </p>
-                </div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">$179.99</span>
-                  <span className="text-muted-foreground">/year</span>
-                  <span className="ml-2 text-sm text-muted-foreground">
-                    ($15/month)
-                  </span>
-                </div>
-                <ul className="grid gap-2 py-4">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Access to all workouts</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Full movement library</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>Progress tracking</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-4 w-4" />
-                    <span>25% savings vs monthly</span>
-                  </li>
-                </ul>
-                <Link
-                  href="/signup?plan=annual"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                >
-                  Start Free Trial
-                </Link>
-              </div>
+                <CardHeader>
+                  <CardTitle>Annual</CardTitle>
+                  <CardDescription>Save 25% with our annual plan.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-baseline gap-1 mb-4">
+                    <span className="text-4xl font-bold">$179.99</span>
+                    <span className="text-muted-foreground">/year</span>
+                    <span className="ml-2 text-sm text-muted-foreground">
+                      ($15/month)
+                    </span>
+                  </div>
+                  <ul className="grid gap-2 py-4">
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Access to all workouts</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Full movement library</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>Progress tracking</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="h-4 w-4" />
+                      <span>25% savings vs monthly</span>
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild className="w-full">
+                    <Link href="/signup?plan=annual">Start Free Trial</Link>
+                  </Button>
+                </CardFooter>
+              </Card>
             </div>
             <div className="mx-auto mt-12 max-w-[58rem] text-center text-muted-foreground">
               <p>
