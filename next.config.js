@@ -4,10 +4,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['lh3.googleusercontent.com'], // For Google profile images
-  },
-  experimental: {
-    serverActions: true,
-  },
+  }
 }
 
 module.exports = nextConfig 
