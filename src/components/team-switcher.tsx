@@ -49,6 +49,7 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
 interface TeamSwitcherProps extends PopoverTriggerProps {
   teams: Team[]
+  className?: string
 }
 
 export function TeamSwitcher({ className, teams }: TeamSwitcherProps) {
