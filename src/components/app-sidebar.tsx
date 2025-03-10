@@ -1,91 +1,173 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { 
-  LayoutDashboard, 
-  Dumbbell, 
-  LineChart, 
-  Settings, 
-  LogOut
+import {
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  SquareTerminal,
+  Home,
+  Users,
+  CreditCard,
+  Settings,
+  HelpCircle,
+  Inbox,
+  FileText,
+  Plus,
+  type LucideIcon,
 } from "lucide-react"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar"
 
-export function AppSidebar() {
-  const pathname = usePathname()
-  
-  const navItems = [
+// Define the link type to match the component interfaces
+type NavLink = {
+  title: string
+  label?: string
+  icon: LucideIcon
+  variant: "default" | "ghost"
+  href: string
+}
+
+// This is sample data.
+const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
     {
-      title: "Dashboard",
+      name: "Acme Inc",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
+  mainLinks: [
+    {
+      title: "Home",
       href: "/dashboard",
-      icon: <LayoutDashboard className="h-5 w-5" />,
+      icon: Home,
+      variant: "default" as const,
     },
     {
       title: "Workouts",
       href: "/workouts",
-      icon: <Dumbbell className="h-5 w-5" />,
+      icon: SquareTerminal,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Exercises",
+      href: "/exercises",
+      icon: Bot,
+      variant: "ghost" as const,
     },
     {
       title: "Progress",
       href: "/progress",
-      icon: <LineChart className="h-5 w-5" />,
+      icon: BookOpen,
+      variant: "ghost" as const,
     },
     {
       title: "Settings",
       href: "/settings",
-      icon: <Settings className="h-5 w-5" />,
+      icon: Settings2,
+      variant: "ghost" as const,
     },
-  ]
+  ] as NavLink[],
+  projectLinks: [
+    {
+      title: "Chest Day",
+      href: "/projects/chest",
+      icon: Frame,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Leg Day",
+      href: "/projects/legs",
+      icon: PieChart,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Full Body",
+      href: "/projects/fullbody",
+      icon: Map,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Create Workout",
+      href: "/projects/new",
+      icon: Plus,
+      variant: "ghost" as const,
+    },
+  ] as NavLink[],
+  userLinks: [
+    {
+      title: "Profile",
+      href: "/profile",
+      icon: Users,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Billing",
+      href: "/billing",
+      icon: CreditCard,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Settings",
+      href: "/settings",
+      icon: Settings,
+      variant: "ghost" as const,
+    },
+    {
+      title: "Help",
+      href: "/help",
+      icon: HelpCircle,
+      variant: "ghost" as const,
+    },
+  ] as NavLink[],
+}
 
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <aside className="flex h-full flex-col overflow-hidden border-r bg-background">
-      <div className="flex h-16 items-center border-b px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-bold text-xl">MYFC</span>
-        </Link>
-      </div>
-      <div className="flex-1 overflow-auto py-2">
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-xs font-semibold uppercase tracking-tight text-muted-foreground">
-            Navigation
-          </h2>
-          <nav className="grid gap-1 px-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent",
-                  pathname === item.href
-                    ? "bg-accent text-accent-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {item.icon}
-                <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
-                  {item.title}
-                </span>
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </div>
-      <div className="mt-auto border-t p-2">
-        <Button variant="ghost" asChild className="w-full justify-start">
-          <Link
-            href="/logout"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all hover:text-foreground"
-          >
-            <LogOut className="h-5 w-5" />
-            <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
-              Log out
-            </span>
-          </Link>
-        </Button>
-      </div>
-    </aside>
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <TeamSwitcher teams={data.teams} />
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain links={data.mainLinks} />
+        <NavProjects links={data.projectLinks} />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser links={data.userLinks} />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
   )
 }
