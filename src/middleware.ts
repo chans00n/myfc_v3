@@ -1,6 +1,6 @@
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -60,7 +60,7 @@ export async function middleware(request: NextRequest) {
   if (isAuthRoute && session) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
-
+  
   return response
 }
 
