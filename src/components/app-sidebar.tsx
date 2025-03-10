@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 export function AppSidebar() {
   const pathname = usePathname()
@@ -47,36 +48,43 @@ export function AppSidebar() {
         </Link>
       </div>
       <div className="flex-1 overflow-auto py-2">
-        <nav className="grid gap-1 px-2">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent",
-                pathname === item.href
-                  ? "bg-accent text-accent-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {item.icon}
-              <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
-                {item.title}
-              </span>
-            </Link>
-          ))}
-        </nav>
+        <div className="px-3 py-2">
+          <h2 className="mb-2 px-4 text-xs font-semibold uppercase tracking-tight text-muted-foreground">
+            Navigation
+          </h2>
+          <nav className="grid gap-1 px-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-accent",
+                  pathname === item.href
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {item.icon}
+                <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
+                  {item.title}
+                </span>
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
       <div className="mt-auto border-t p-2">
-        <Link
-          href="/logout"
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-foreground"
-        >
-          <LogOut className="h-5 w-5" />
-          <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
-            Log out
-          </span>
-        </Link>
+        <Button variant="ghost" asChild className="w-full justify-start">
+          <Link
+            href="/logout"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-all hover:text-foreground"
+          >
+            <LogOut className="h-5 w-5" />
+            <span className="group-data-[expanded=false]/sidebar-wrapper:hidden">
+              Log out
+            </span>
+          </Link>
+        </Button>
       </div>
     </aside>
   )

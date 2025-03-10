@@ -8,7 +8,15 @@ export function ThemeProvider({
   ...props
 }: {
   children: React.ReactNode
-  [key: string]: any
-}) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+} & React.ComponentPropsWithoutRef<typeof NextThemesProvider>) {
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      {...props}
+    >
+      {children}
+    </NextThemesProvider>
+  )
 } 
