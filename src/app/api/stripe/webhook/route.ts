@@ -65,7 +65,7 @@ export async function POST(req: Request) {
                 current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
                 cancel_at_period_end: subscription.cancel_at_period_end,
               })
-              .eq('user_id', subscriptionData.user_id)
+              .eq('user_id', subscriptionData.user_id as string)
           }
         }
         break
@@ -91,7 +91,7 @@ export async function POST(req: Request) {
               current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
               cancel_at_period_end: subscription.cancel_at_period_end,
             })
-            .eq('user_id', subscriptionData.user_id)
+            .eq('user_id', subscriptionData.user_id as string)
         }
         break
       }
@@ -114,7 +114,7 @@ export async function POST(req: Request) {
               status: 'canceled',
               cancel_at_period_end: false,
             })
-            .eq('user_id', subscriptionData.user_id)
+            .eq('user_id', subscriptionData.user_id as string)
         }
         break
       }
