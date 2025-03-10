@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Test</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .icon-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .icon-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    img {
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Icon Test</h1>
+  <p>This page tests if the PWA icons load correctly.</p>
+  
+  <div class="icon-container">
+    <div class="icon-item">
+      <img src="/icons/icon-192x192.png" alt="192x192 Icon" width="192" height="192">
+      <div>
+        <h2>192x192 Icon</h2>
+        <p>Path: /icons/icon-192x192.png</p>
+        <p>If you can see this icon, it's loading correctly.</p>
+      </div>
+    </div>
+    
+    <div class="icon-item">
+      <img src="/icons/icon-384x384.png" alt="384x384 Icon" width="192" height="192">
+      <div>
+        <h2>384x384 Icon</h2>
+        <p>Path: /icons/icon-384x384.png</p>
+        <p>If you can see this icon, it's loading correctly.</p>
+      </div>
+    </div>
+    
+    <div class="icon-item">
+      <img src="/icons/icon-512x512.png" alt="512x512 Icon" width="192" height="192">
+      <div>
+        <h2>512x512 Icon</h2>
+        <p>Path: /icons/icon-512x512.png</p>
+        <p>If you can see this icon, it's loading correctly.</p>
+      </div>
+    </div>
+  </div>
+  
+  <h2>Troubleshooting</h2>
+  <p>If the icons don't appear above:</p>
+  <ol>
+    <li>Check that the files exist in the correct location</li>
+    <li>Verify that the files are valid PNG images</li>
+    <li>Check for CORS issues in the browser console</li>
+    <li>Make sure the files are being served correctly by Vercel</li>
+  </ol>
+</body>
+</html> 
